@@ -9,6 +9,10 @@ ruby '3.0.2'
 gem 'pg', '~> 1.1'
 gem 'rails', '~> 7.0.1'
 gem 'slim-rails'
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'

@@ -8,4 +8,4 @@ lint-fix:
 	bundle exec rubocop -A
 
 start:
-	bin/rails server
+	./bin/dev
