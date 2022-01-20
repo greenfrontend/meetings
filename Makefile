@@ -9,3 +9,9 @@ lint-fix:
 
 start:
 	./bin/dev
+
+console:
+	bin/rails console
+
+seed:
+	bin/rails db:seed:replant

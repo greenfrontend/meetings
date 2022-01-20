@@ -1,8 +1,23 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+require 'faker'
+
+def event
+  title = "Event about #{Faker::Lorem.sentence(word_count: 3)}"
+  location = "#{Faker::Address.city}, #{Faker::Address.street_address}, #{Faker::Address.secondary_address}"
+
+  {
+    title: title,
+    description: Faker::Lorem.sentence(word_count: 7, supplemental: false, random_words_to_add: 3),
+    location: location,
+    starttime: 2.days.from_now,
+    endtime: 4.days.from_now,
+    organizeremail: Faker::Internet.email,
+    organizertelegram: Faker::Internet.username,
+    link: '/link'
+  }
+end
+
+30.times do
+  Event.create!(event)
+end
