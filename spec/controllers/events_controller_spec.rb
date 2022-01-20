@@ -18,7 +18,7 @@ RSpec.describe EventsController, type: :controller do
 
   it 'create' do
     event = events(:first)
-    event_params = { event: { title: event.title, location: event.location, starttime: event.starttime } }
+    event_params = { event: { title: event.title, location: event.location, start_time: event.start_time } }
 
     expect do
       post :create, params: event_params

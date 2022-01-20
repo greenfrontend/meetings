@@ -45,10 +45,10 @@ class EventsController < ApplicationController
       :title,
       :description,
       :location,
-      :starttime,
-      :endtime,
-      :organizeremail,
-      :organizertelegram,
+      :start_time,
+      :end_time,
+      :organizer_email,
+      :organizer_telegram,
       :link
     )
   end

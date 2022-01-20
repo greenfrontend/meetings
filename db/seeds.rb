@@ -10,10 +10,10 @@ def event
     title: title,
     description: Faker::Lorem.sentence(word_count: 7, supplemental: false, random_words_to_add: 3),
     location: location,
-    starttime: 2.days.from_now,
-    endtime: 4.days.from_now,
-    organizeremail: Faker::Internet.email,
-    organizertelegram: Faker::Internet.username,
+    start_time: 2.days.from_now,
+    end_time: 4.days.from_now,
+    organizer_email: Faker::Internet.email,
+    organizer_telegram: Faker::Internet.username,
     link: '/link'
   }
 end
