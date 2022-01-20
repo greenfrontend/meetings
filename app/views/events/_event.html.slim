@@ -14,4 +14,5 @@
       | &nbsp;/&nbsp;
       a href="mailto:#{event.organizeremail}"
         = event.organizeremail
-    a.btn.btn-primary href=event.link Read more
+    a.btn.btn-primary.me-2 href=event.link Read more
+    = link_to "Edit", edit_event_path(event), class: "btn btn-secondary"

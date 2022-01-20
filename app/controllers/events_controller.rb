@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   def index
-    @events = Event.page(params[:page]).per(10)
+    @events = Event.page(params[:page]).per(10).order('updated_at DESC')
   end
 
   def new
@@ -16,6 +16,20 @@ class EventsController < ApplicationController
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+
+    if @event.update(event_params)
+      redirect_to root_path
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
