@@ -14,6 +14,7 @@ gem 'jsbundling-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'cssbundling-rails'
 gem 'kaminari'
+gem 'simple_form'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 

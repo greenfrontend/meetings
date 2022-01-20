@@ -1,0 +1,14 @@
+.container.mt-4
+  h4.mb-4 Create Event
+
+  .col.col-lg-6
+    = simple_form_for @event do |f|
+      = f.input :title
+      = f.input :description
+      = f.input :location
+      = f.input :starttime
+      = f.input :endtime
+      = f.input :organizeremail
+      = f.input :organizertelegram
+      = f.input :link
+      = f.button :submit, class:"btn btn-primary mt-2"

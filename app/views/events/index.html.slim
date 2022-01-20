@@ -1,23 +1,9 @@
 .container.mt-4
+  a.btn.btn-success.mb-2(href=new_event_path) Add Event
+
   .row
     .col.col-md-6
       - @events.each do |event|
-        .card.mb-2
-          .card-header.d-flex.justify-content-between.align-items-center.flex-wrap
-            = event.location
-            .badge.bg-secondary
-              = event.starttime
-              | -
-              = event.endtime
-          .card-body
-            h4.card-title = event.title
-            p.card-text = event.description
-            p.card-text
-              span>Org:
-              = event.organizertelegram
-              | &nbsp;/&nbsp;
-              a href="mailto:#{event.organizeremail}"
-                = event.organizeremail
-            a.btn.btn-primary href=event.link Read more
+        = render partial: 'event', locals: { event: event }
 
   = paginate @events
