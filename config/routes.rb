@@ -2,5 +2,5 @@
 
 Rails.application.routes.draw do
   root 'events#index'
-  resources :events, except: [:index]
+  resources :events
 end

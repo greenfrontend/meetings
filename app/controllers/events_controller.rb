@@ -13,7 +13,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
 
     if @event.save
-      redirect_to root_path
+      redirect_to root_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     if @event.update(event_params)
-      redirect_to root_path
+      redirect_to root_path, notice: t('.updated')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.destroy
 
-    redirect_to root_path, status: :see_other
+    redirect_to root_path, status: :see_other, notice: t('.deleted')
   end
 
   def event_params

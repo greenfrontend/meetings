@@ -9,11 +9,12 @@
     h4.card-title = event.title
     p.card-text = event.description
     p.card-text
-      span>Org:
+      span = t('.organizator')
+      | :
       = event.organizertelegram
       | &nbsp;/&nbsp;
       a href="mailto:#{event.organizeremail}"
         = event.organizeremail
-    a.btn.btn-primary.me-2 href=event.link Read more
-    = link_to "Edit", edit_event_path(event), class: "btn btn-secondary me-2"
-    = link_to "Delete", event_path(event), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-danger"
+    a.btn.btn-primary.me-2 href=event.link = t('.read_more')
+    = link_to t('.edit'), edit_event_path(event), class: "btn btn-secondary me-2"
+    = link_to t('.delete'), event_path(event), data: { turbo_method: :delete, turbo_confirm: t('.confirm') }, class: "btn btn-danger"

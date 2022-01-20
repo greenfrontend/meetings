@@ -30,4 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  site_name: "Events"
+  organizator: "Org"
+  read_more: "Read more"
+  edit: "Edit"
+  delete: "Delete"
+  confirm: "Are you sure?"
+  events:
+    index:
+      title: "Add Event"
+    edit:
+      title: "Edit Event"
+    new:
+      title: "Create Event"
+    create:
+      success: "Event was successfully created"
+    update:
+      updated: "Event was successfully updated"
+    destroy:
+      deleted: "Event was successfully deleted"
