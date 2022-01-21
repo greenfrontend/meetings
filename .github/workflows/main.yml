@@ -44,8 +44,12 @@ jobs:
           bundle exec rails db:migrate
           make lint
           make test
+          ls -la coverage
 
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: a7f3f107ff1f19f9500fbd451739666286a40a37340d33acec166b1e8880a19d
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/coverage/lcov.info:lcov
