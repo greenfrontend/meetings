@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.1.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'pg', '~> 1.1'
@@ -79,4 +79,5 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'simplecov', '~> 0.17.1', require: false
 end
