@@ -1,0 +1,20 @@
+.card.mb-2
+  .card-header.d-flex.justify-content-between.align-items-center.flex-wrap
+    = event.location
+    .badge.bg-secondary
+      = event.start_time
+      | -
+      = event.end_time
+  .card-body
+    h4.card-title = event.title
+    p.card-text = event.description
+    p.card-text
+      span = t('.organizator')
+      | :
+      = event.organizer_telegram
+      | &nbsp;/&nbsp;
+      a href="mailto:#{event.organizer_email}"
+        = event.organizer_email
+    a.btn.btn-primary.me-2 href=event.link = t('.read_more')
+    = link_to t('.edit'), edit_event_path(event), class: "btn btn-secondary me-2"
+    = link_to t('.delete'), event_path(event), data: { turbo_method: :delete, turbo_confirm: I18n.t('.confirm') }, class: "btn btn-danger"

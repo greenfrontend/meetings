@@ -1,0 +1,4 @@
+first:
+  title: "Event"
+  location: "Moscow"
+  start_time: <%= Time.now %>

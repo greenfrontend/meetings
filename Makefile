@@ -8,4 +8,10 @@ lint-fix:
 	bundle exec rubocop -A
 
 start:
-	bin/rails server
+	./bin/dev
+
+console:
+	bin/rails console
+
+seed:
+	bin/rails db:seed:replant

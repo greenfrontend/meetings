@@ -9,7 +9,12 @@ ruby '3.0.2'
 gem 'pg', '~> 1.1'
 gem 'rails', '~> 7.0.1'
 gem 'slim-rails'
-
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
+gem 'kaminari'
+gem 'simple_form'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -55,6 +60,7 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'faker', git: 'https://github.com/faker-ruby/faker.git', branch: 'master'
   gem 'rspec-rails', '~> 5.0.0'
 end
 
@@ -69,4 +75,8 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 5.0'
 end
