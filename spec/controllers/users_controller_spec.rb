@@ -15,7 +15,7 @@ RSpec.describe UsersController, type: :controller do
       last_name: 'last',
       password: '123',
       password_confirmation: '123',
-      email: 'user@user.com'
+      email: 'user1@user.com'
     } }
 
     expect do
@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
       last_name: 'last',
       password: '123',
       password_confirmation: '456',
-      email: 'user@user.com'
+      email: 'user2@user.com'
     } }
 
     expect do
