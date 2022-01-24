@@ -1,0 +1,56 @@
+name: Tests and linter
+
+on:
+  pull_request:
+    branches:
+      - "master"
+  push:
+    branches:
+      - "master"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Build and run test
+        env:
+          DATABASE_URL: postgres://postgres:@localhost:5432/test
+          DATABASE_USERNAME: postgres
+          DATABASE_PASSWORD: postgres
+          COVERAGE: true
+          RAILS_ENV: test
+        run: |
+          sudo apt-get -yqq install libpq-dev
+          gem install bundler:2.3.5
+          bundle install --jobs 4 --retry 3
+          yarn install
+          bundle exec rails db:create
+          bundle exec rails db:migrate
+          make lint
+          make test
+
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
+        env:
+          CC_TEST_REPORTER_ID: a7f3f107ff1f19f9500fbd451739666286a40a37340d33acec166b1e8880a19d
+        with:
+          coverageLocations: |
+            ${{github.workspace}}/coverage/.resultset.json:simplecov

@@ -1,5 +1,5 @@
 test:
-	bundle exec rspec
+	RAILS_ENV=test bundle exec rspec
 
 lint:
 	bundle exec rubocop

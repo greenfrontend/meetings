@@ -1,24 +1,5 @@
-# README
+[![Maintainability](https://api.codeclimate.com/v1/badges/b9b45546737776f1acf7/maintainability)](https://codeclimate.com/github/greenfrontend/meetings/maintainability)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[![Test Coverage](https://api.codeclimate.com/v1/badges/b9b45546737776f1acf7/test_coverage)](https://codeclimate.com/github/greenfrontend/meetings/test_coverage)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![Tests and linter](https://github.com/greenfrontend/meetings/actions/workflows/main.yml/badge.svg)](https://github.com/greenfrontend/meetings/actions/workflows/main.yml)
