@@ -8,10 +8,25 @@ html
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
     = javascript_include_tag "application", "data-turbo-track": "reload", "defer": true
   body
-    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    nav.navbar.navbar-expand-md.navbar-light.bg-light
       .container
         a.navbar-brand href=root_path = I18n.t('.site_name')
-    
+        button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+          ul.navbar-nav.ms-auto.mb-2.mb-lg-0
+            - unless current_user
+              li.nav-item
+                a.nav-link href=new_user_path = I18n.t('.sign_up')
+              li.nav-item
+                a.nav-link href=new_session_path = I18n.t('.log_in')
+            li.nav-item.dropdown
+              - if current_user
+                a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" = current_user.email
+                ul.dropdown-menu aria-labelledby="navbarDropdown" 
+                  li
+                    = link_to t('.log_out'), session_path, data: { turbo_method: :delete }, class: "dropdown-item"
+      
     .container.mt-4
       - flash.each do |name, msg|
         .alert.alert-primary role="alert" = msg

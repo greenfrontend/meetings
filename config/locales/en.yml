@@ -49,3 +49,18 @@ en:
       updated: "Event was successfully updated"
     destroy:
       deleted: "Event was successfully deleted"
+  sign_up: "Sign up"
+  log_in: "Log in"
+  log_out: "Log out"
+  users:
+    new:
+      title: "Create User"
+    create:
+      success: "User was successfully created"
+  sessions:
+    new:
+      title: "Log in"
+      button: "Log In"
+    create:
+      success: "Successfully signed in"
+      wrong: "wrong or email does not exist"
