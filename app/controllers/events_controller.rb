@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  before_action :set_event, only: %i[edit update destroy]
+
   def index
     @events = Event.page(params[:page]).per(10).order('updated_at DESC')
   end
@@ -10,7 +12,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.create(event_params)
+    @event = current_user.events.build(event_params)
 
     if @event.save
       redirect_to root_path, notice: t('.success')
@@ -19,13 +21,9 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
-    @event = current_user.events.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @event = current_user.events.find(params[:id])
-
     if @event.update(event_params)
       redirect_to root_path, notice: t('.updated')
     else
@@ -34,10 +32,15 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = current_user.events.find(params[:id])
     @event.destroy
 
     redirect_to root_path, status: :see_other, notice: t('.deleted')
+  end
+
+  private
+
+  def set_event
+    @event = current_user.events.find(params[:id])
   end
 
   def event_params
