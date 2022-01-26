@@ -2,6 +2,7 @@
 
 require 'rails_helper'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe SessionsController, type: :controller do
   fixtures :users
 
@@ -35,4 +36,13 @@ RSpec.describe SessionsController, type: :controller do
 
     expect(response).to have_http_status(:unauthorized)
   end
+
+  it 'destroy' do
+    sign_in users(:test)
+
+    delete :destroy
+
+    expect(session[:user_id]).to eq nil
+  end
 end
+# rubocop:enable Metrics/BlockLength
