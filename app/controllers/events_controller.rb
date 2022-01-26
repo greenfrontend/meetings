@@ -6,11 +6,11 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @event = current_user.events.build
   end
 
   def create
-    @event = Event.new(event_params)
+    @event = current_user.events.create(event_params)
 
     if @event.save
       redirect_to root_path, notice: t('.success')
@@ -20,11 +20,11 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
 
     if @event.update(event_params)
       redirect_to root_path, notice: t('.updated')
@@ -34,7 +34,7 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
+    @event = current_user.events.find(params[:id])
     @event.destroy
 
     redirect_to root_path, status: :see_other, notice: t('.deleted')

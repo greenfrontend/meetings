@@ -4,7 +4,11 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe EventsController, type: :controller do
-  fixtures :events
+  fixtures :events, :users
+
+  before do
+    sign_in users(:test)
+  end
 
   it 'index' do
     get :index
