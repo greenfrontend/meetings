@@ -18,6 +18,18 @@ def event
   }
 end
 
+def user
+  first, last = Faker::Name.unique.name.split
+  {
+    first_name: first,
+    last_name: last,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password
+  }
+end
+
+events_poster = User.create!(user)
+
 30.times do
-  Event.create!(event)
+  events_poster.events.create!(event)
 end
