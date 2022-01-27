@@ -11,30 +11,34 @@ RSpec.describe SessionsController, type: :controller do
     expect(response).to have_http_status(:success)
   end
 
-  it 'create' do
-    session_params = {
-      user: {
-        email: users(:test).email,
-        password: 'test'
+  context 'when logged in' do
+    it 'session contains user id' do
+      session_params = {
+        user: {
+          email: users(:test).email,
+          password: 'test'
+        }
       }
-    }
 
-    post :create, params: session_params
+      post :create, params: session_params
 
-    expect(session[:user_id]).to eq users(:test).id
+      expect(session[:user_id]).to eq users(:test).id
+    end
   end
 
-  it 'not create' do
-    session_params = {
-      user: {
-        email: users(:test).email,
-        password: 'wrong'
+  context 'when not logged in' do
+    it 'session not contains user id' do
+      session_params = {
+        user: {
+          email: users(:test).email,
+          password: 'wrong'
+        }
       }
-    }
 
-    post :create, params: session_params
+      post :create, params: session_params
 
-    expect(response).to have_http_status(:unauthorized)
+      expect(response).to have_http_status(:unauthorized)
+    end
   end
 
   it 'destroy' do
