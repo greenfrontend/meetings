@@ -13,5 +13,8 @@ start:
 console:
 	bin/rails console
 
+routes:
+	bin/rails routes
+
 seed:
 	bin/rails db:seed:replant

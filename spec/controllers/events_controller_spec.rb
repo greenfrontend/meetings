@@ -4,61 +4,70 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe EventsController, type: :controller do
-  fixtures :events
+  context 'with logined user' do
+    let(:user) { create(:user) }
 
-  it 'index' do
-    get :index
-    expect(response).to have_http_status(:success)
-  end
+    before do
+      sign_in user
+    end
 
-  it 'new' do
-    get :new
-    expect(response).to have_http_status(:success)
-  end
+    it 'index' do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
 
-  it 'create' do
-    event = events(:first)
-    event_params = { event: { title: event.title, location: event.location, start_time: event.start_time } }
+    it 'new' do
+      get :new
+      expect(response).to have_http_status(:success)
+    end
 
-    expect do
-      post :create, params: event_params
-    end.to change(Event, :count).by(1)
+    context 'when create event' do
+      let(:event) { attributes_for(:event) }
 
-    expect(response).to redirect_to(root_path)
-  end
+      it 'create' do
+        event_params = { event: }
 
-  it 'not create' do
-    event = events(:first)
-    event_params = { event: { title: event.title } }
+        expect do
+          post :create, params: event_params
+        end.to change(Event, :count).by(1)
 
-    expect do
-      post :create, params: event_params
-    end.not_to change(Event, :count)
+        expect(response).to redirect_to(root_path)
+      end
+    end
 
-    expect(response).to have_http_status(:unprocessable_entity)
-  end
+    context 'when not creates' do
+      it 'not create' do
+        event_params = { event: { title: 'only title' } }
 
-  it 'edit' do
-    event = events(:first)
-    get :edit, params: { id: event.id }
-    expect(response).to have_http_status(:success)
-  end
+        expect do
+          post :create, params: event_params
+        end.not_to change(Event, :count)
 
-  it 'update' do
-    event = events(:first)
-    updated_event = { title: 'new' }
-    put :update, params: { id: event.id, event: updated_event }
-    expect(response).to redirect_to(root_path)
-  end
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
 
-  it 'destroy' do
-    event = events(:first)
+    it 'edit' do
+      event = create(:event, user:)
+      get :edit, params: { id: event.id }
+      expect(response).to have_http_status(:success)
+    end
 
-    expect do
-      delete :destroy, params: { id: event.id }
-    end.to change(Event, :count).by(-1)
+    it 'update' do
+      event = create(:event, user:)
+      put :update, params: { id: event.id, event: { title: 'new' } }
+      expect(response).to redirect_to(root_path)
+    end
 
-    expect(response).to redirect_to(root_path)
+    it 'destroy' do
+      event = create(:event, user:)
+
+      expect do
+        delete :destroy, params: { id: event.id }
+      end.to change(Event, :count).by(-1)
+
+      expect(response).to redirect_to(root_path)
+    end
   end
 end
 # rubocop:enable Metrics/BlockLength
