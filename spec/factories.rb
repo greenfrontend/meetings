@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
+  factory :admin do
+  end
+
   factory :user do
     first_name { 'John' }
     last_name { 'Doe' }
