@@ -13,3 +13,6 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false

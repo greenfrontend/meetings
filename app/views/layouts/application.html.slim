@@ -11,6 +11,8 @@ html
     nav.navbar.navbar-expand-md.navbar-light.bg-light
       .container
         a.navbar-brand href=root_path = I18n.t('.site_name')
+        - if current_user&.admin?
+          a.nav-link href=admin_events_path = I18n.t('.admin_area')
         button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
           span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse
