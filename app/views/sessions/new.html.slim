@@ -3,7 +3,7 @@
     .col.col-md-6.mx-auto
       h4.mb-4 = t('.title')
 
-      = simple_form_for(@user, method: :post, url: session_path) do |f|
+      = simple_form_for(@user_sign_in_form, method: :post, url: session_path) do |f|
         = f.input :email
         = f.input :password
         = f.button :submit, t('.button'), class:"btn btn-primary mt-2"

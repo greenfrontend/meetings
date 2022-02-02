@@ -2,25 +2,19 @@
 
 class SessionsController < ApplicationController
   def new
-    @user = User.new
+    @user_sign_in_form = UserSignInForm.new
   end
 
-  # rubocop:disable Metrics/AbcSize
   def create
-    @user = User.find_by(email: session_params[:email])
+    @user_sign_in_form = UserSignInForm.new(session_params)
 
-    if @user&.authenticate(session_params[:password])
-      session[:user_id] = @user.id
-
+    if @user_sign_in_form.valid?
+      sign_in @user_sign_in_form.user
       redirect_to root_path, notice: t('.success')
     else
-      @user = User.new
-      @user.errors.add(:password, t('.wrong'))
-
       render :new, status: :unauthorized
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def destroy
     session[:user_id] = nil
@@ -28,6 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user_sign_in_form).permit(:email, :password)
   end
 end

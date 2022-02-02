@@ -16,3 +16,6 @@ RSpec/MultipleExpectations:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Lint/DuplicateMethods:
+  Enabled: false
