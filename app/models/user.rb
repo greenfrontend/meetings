@@ -8,6 +8,6 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
 
   def admin?
-    is_a? Admin
+    role.eql? 'Admin'
   end
 end

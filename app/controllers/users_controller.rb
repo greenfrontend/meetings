@@ -6,9 +6,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(users_params)
+    @user = User.new(users_params.merge(role: 'User'))
 
-    if @user.valid? && Author.create(users_params)
+    if @user.save
       redirect_to new_session_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity

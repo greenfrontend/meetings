@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :author do
-  end
-
-  factory :admin do
+  factory :admin, class: 'User' do
+    first_name { 'Ivan' }
+    last_name { 'Ivanov' }
+    sequence(:email) { |n| "admin#{n}@example.com" }
+    password_digest { BCrypt::Password.create('admin') }
+    role { 'Admin' }
   end
 
   factory :user do
     first_name { 'John' }
     last_name { 'Doe' }
-    sequence(:email) { |n| "person#{n}@example.com" }
+    sequence(:email) { |n| "user#{n}@example.com" }
     password_digest { BCrypt::Password.create('test') }
+    role { 'User' }
   end
 
   factory :event do
