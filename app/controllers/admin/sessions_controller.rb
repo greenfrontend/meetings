@@ -4,25 +4,19 @@ class Admin::SessionsController < Admin::ApplicationController
   skip_before_action :require_be_admin, only: %i[new create]
 
   def new
-    @user = User.new
+    @sign_in_form = SignInForm.new
   end
 
-  # rubocop:disable Metrics/AbcSize
   def create
-    @user = User.find_by(email: session_params[:email])
+    @sign_in_form = SignInForm.new(session_params.merge(admin_form: true))
 
-    if @user&.authenticate(session_params[:password]) && @user&.admin?
-      session[:user_id] = @user.id
-
+    if @sign_in_form.valid?
+      sign_in @sign_in_form.user
       redirect_to admin_events_path, notice: t('.success')
     else
-      @user = User.new
-      @user.errors.add(:password, t('.wrong'))
-
       render :new, status: :unauthorized
     end
   end
-  # rubocop:enable Metrics/AbcSize
 
   def destroy
     session[:user_id] = nil
@@ -30,6 +24,6 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def session_params
-    params.require(:user).permit(:email, :password)
+    params.require(:sign_in_form).permit(:email, :password)
   end
 end

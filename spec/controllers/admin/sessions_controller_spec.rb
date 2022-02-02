@@ -9,13 +9,13 @@ RSpec.describe Admin::SessionsController, type: :controller do
       let(:admin) { create(:admin) }
 
       it 'session contains user id' do
-        session_params = { user: { email: admin.email, password: 'admin' } }
+        session_params = { sign_in_form: { email: admin.email, password: 'admin' } }
         post :create, params: session_params
         expect(session[:user_id]).to eq admin.id
       end
 
       it 'redirect to admin area' do
-        session_params = { user: { email: admin.email, password: 'admin' } }
+        session_params = { sign_in_form: { email: admin.email, password: 'admin' } }
         post :create, params: session_params
         expect(response).to redirect_to(admin_events_path)
       end
@@ -25,7 +25,7 @@ RSpec.describe Admin::SessionsController, type: :controller do
       let(:admin) { create(:admin) }
 
       it 'returns unauthorized status' do
-        session_params = { user: { email: admin.email, password: 'wrong' } }
+        session_params = { sign_in_form: { email: admin.email, password: 'wrong' } }
         post :create, params: session_params
         expect(response).to have_http_status(:unauthorized)
       end

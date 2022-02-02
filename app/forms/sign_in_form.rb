@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class UserSignInForm
+class SignInForm
   include ActiveModel::Model
 
-  attr_accessor :email, :password
+  attr_accessor :email, :password, :admin_form
 
   validates :email, presence: true
   validates :password, presence: true
-  validate :user_exists, :user_can_sign_in
+  validate :user_exists, :user_can_sign_in, :check_admin
 
   def user_can_sign_in
     errors.add(:password, :cannot_sign_in) if password.present? && !@user&.authenticate(password)
@@ -19,6 +19,10 @@ class UserSignInForm
 
   def user
     @user ||= User.find_by(email:)
+  end
+
+  def check_admin
+    errors.add(:email, :not_admin) if admin_form && !user.admin?
   end
 
   def email=(value)

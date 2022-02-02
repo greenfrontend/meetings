@@ -83,7 +83,9 @@ en:
   activemodel:
     errors:
       models:
-        user_sign_in_form:
+        sign_in_form:
           attributes:
             password:
               cannot_sign_in: "wrong or email does not exist"
+            email:
+              not_admin: "seems to be not admin"

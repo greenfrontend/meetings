@@ -21,7 +21,7 @@ RSpec.describe SessionsController, type: :controller do
       let(:user) { create(:user) }
 
       it 'session contains user id' do
-        session_params = { user_sign_in_form: { email: user.email, password: 'test' } }
+        session_params = { sign_in_form: { email: user.email, password: 'test' } }
         post :create, params: session_params
         expect(session[:user_id]).to eq user.id
       end
@@ -31,7 +31,7 @@ RSpec.describe SessionsController, type: :controller do
       let(:user) { create(:user) }
 
       it 'returns unauthorized status' do
-        session_params = { user_sign_in_form: { email: user.email, password: 'wrong' } }
+        session_params = { sign_in_form: { email: user.email, password: 'wrong' } }
         post :create, params: session_params
         expect(response).to have_http_status(:unauthorized)
       end

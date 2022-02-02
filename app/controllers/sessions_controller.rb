@@ -2,14 +2,14 @@
 
 class SessionsController < ApplicationController
   def new
-    @user_sign_in_form = UserSignInForm.new
+    @sign_in_form = SignInForm.new
   end
 
   def create
-    @user_sign_in_form = UserSignInForm.new(session_params)
+    @sign_in_form = SignInForm.new(session_params)
 
-    if @user_sign_in_form.valid?
-      sign_in @user_sign_in_form.user
+    if @sign_in_form.valid?
+      sign_in @sign_in_form.user
       redirect_to root_path, notice: t('.success')
     else
       render :new, status: :unauthorized
@@ -22,6 +22,6 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:user_sign_in_form).permit(:email, :password)
+    params.require(:sign_in_form).permit(:email, :password)
   end
 end
