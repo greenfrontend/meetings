@@ -4,42 +4,57 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe UsersController, type: :controller do
-  it 'new' do
-    get :new
-    expect(response).to have_http_status(:success)
-  end
+  describe 'GET #new' do
+    before { get :new }
 
-  context 'when create user' do
-    let(:user) do
-      attributes_for(:user, password: '123',
-                            password_confirmation: '123')
-    end
-
-    it 'create' do
-      users_params = { user: }
-
-      expect do
-        post :create, params: users_params
-      end.to change(User, :count).by(1)
-
-      expect(response).to redirect_to('/session/new')
+    it 'renders form' do
+      expect(response).to render_template(:new)
     end
   end
 
-  context 'when not create user' do
-    let(:user) do
-      attributes_for(:user, password: '123',
-                            password_confirmation: '456')
+  describe 'POST #create' do
+    context 'with valid fields' do
+      let(:user) do
+        attributes_for(:user, password: '123',
+                              password_confirmation: '123')
+      end
+
+      it 'creates new user' do
+        users_params = { user: }
+
+        expect do
+          post :create, params: users_params
+        end.to change(User, :count).by(1)
+      end
+
+      it 'redirects to login' do
+        users_params = { user: }
+        post :create, params: users_params
+        expect(response).to redirect_to('/session/new')
+      end
     end
 
-    it 'not create' do
-      users_params = { user: }
+    context 'with invalid fields' do
+      let(:user) do
+        attributes_for(:user, password: '123',
+                              password_confirmation: '456')
+      end
 
-      expect do
+      it 'not create' do
+        users_params = { user: }
+
+        expect do
+          post :create, params: users_params
+        end.not_to change(User, :count)
+
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+
+      it 'renders user form' do
+        users_params = { user: }
         post :create, params: users_params
-      end.not_to change(User, :count)
-
-      expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to render_template(:new)
+      end
     end
   end
 end
