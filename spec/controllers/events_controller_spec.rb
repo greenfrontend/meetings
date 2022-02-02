@@ -4,27 +4,41 @@ require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe EventsController, type: :controller do
-  context 'with logined user' do
-    let(:user) { create(:user) }
+  let(:user) { create(:user) }
 
-    before do
-      sign_in user
+  before do
+    sign_in user
+  end
+
+  describe 'GET #index' do
+    before { get :index }
+
+    it 'render events list' do
+      expect(response).to render_template :index
     end
 
-    it 'index' do
-      get :index
-      expect(response).to have_http_status(:success)
+    it 'returns success status' do
+      expect(response).to have_http_status :success
+    end
+  end
+
+  describe 'GET #new' do
+    before { get :new }
+
+    it 'renders form' do
+      expect(response).to render_template :new
     end
 
-    it 'new' do
-      get :new
-      expect(response).to have_http_status(:success)
+    it 'returns success status' do
+      expect(response).to have_http_status :success
     end
+  end
 
-    context 'when create event' do
+  describe 'POST #create' do
+    context 'with valid attributes' do
       let(:event) { attributes_for(:event) }
 
-      it 'create' do
+      it 'creates event' do
         event_params = { event: }
 
         expect do
@@ -35,8 +49,8 @@ RSpec.describe EventsController, type: :controller do
       end
     end
 
-    context 'when not creates' do
-      it 'not create' do
+    context 'with invalid attributes' do
+      it 'not creates event' do
         event_params = { event: { title: 'only title' } }
 
         expect do
@@ -46,19 +60,33 @@ RSpec.describe EventsController, type: :controller do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
+  end
 
-    it 'edit' do
-      event = create(:event, user:)
+  describe 'GET #edit' do
+    let(:event) { create(:event, user:) }
+
+    it 'renders edit form' do
       get :edit, params: { id: event.id }
-      expect(response).to have_http_status(:success)
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'PUT #update' do
+    let(:event) { create(:event, user:) }
+    let(:attrs) { Hash[title: 'new'] }
+
+    it 'updates event' do
+      put :update, params: { id: event.id, event: attrs }
+      expect(event.reload.title).to eq attrs[:title]
     end
 
-    it 'update' do
-      event = create(:event, user:)
-      put :update, params: { id: event.id, event: { title: 'new' } }
+    it 'redirects to root path' do
+      put :update, params: { id: event.id, event: attrs }
       expect(response).to redirect_to(root_path)
     end
+  end
 
+  describe 'DELETE #destroy' do
     it 'destroy' do
       event = create(:event, user:)
 
