@@ -12,7 +12,12 @@ html
       .container
         a.navbar-brand href=root_path = I18n.t('.site_name')
         - if current_user&.admin?
-          a.nav-link href=admin_events_path = I18n.t('.admin.title')
+          .dropdown
+            a#dropdownMenuLink.btn.btn-secondary.dropdown-toggle aria-expanded="false" data-bs-toggle="dropdown" href="#" role="button" 
+              = I18n.t('.admin.menu.title')
+            ul.dropdown-menu aria-labelledby="dropdownMenuLink" 
+              li
+                = link_to t('.admin.menu.pending_events'), admin_events_path, class: "dropdown-item"
         button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
           span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse

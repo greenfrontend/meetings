@@ -12,6 +12,7 @@ gem 'slim-rails'
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem 'aasm'
 gem 'cssbundling-rails'
 gem 'kaminari'
 gem 'simple_form'

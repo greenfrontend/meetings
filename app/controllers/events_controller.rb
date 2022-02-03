@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[edit update destroy]
 
   def index
-    @events = Event.page(params[:page]).per(10).order('updated_at DESC')
+    @events = Event.approved.page(params[:page]).per(10).order('updated_at DESC')
   end
 
   def new

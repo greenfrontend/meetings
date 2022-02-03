@@ -17,3 +17,6 @@
     = link_to t('.read_more'), event.link, class: "btn btn-primary me-2", target: "_blank"
     = link_to t('.edit'), edit_admin_event_path(event), class: "btn btn-secondary me-2"
     = link_to t('.delete'), admin_event_path(event), data: { turbo_method: :delete, turbo_confirm: I18n.t('.confirm') }, class: "btn btn-danger"
+    .mt-2
+      = button_to t('admin.events.actions.approve'), approve_admin_event_path(event), method: :put, class: "a btn btn-sm btn-success me-2"
+      = button_to t('admin.events.actions.decline'), decline_admin_event_path(event), method: :put, class: "a btn btn-sm btn-danger"
