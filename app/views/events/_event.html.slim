@@ -13,9 +13,8 @@
       | :
       = event.organizer_telegram
       | &nbsp;/&nbsp;
-      a href="mailto:#{event.organizer_email}"
-        = event.organizer_email
-    a.btn.btn-primary.me-2 href=event.link = t('.read_more')
+      = link_to event.organizer_email, "mailto:#{event.organizer_email}"
+    = link_to t('.read_more'), event.link, class: "btn btn-primary me-2", target: "_blank"
     - if current_user && current_user.events.find_by_id(event.id)
       = link_to t('.edit'), edit_event_path(event), class: "btn btn-secondary me-2"
       = link_to t('.delete'), event_path(event), data: { turbo_method: :delete, turbo_confirm: I18n.t('.confirm') }, class: "btn btn-danger"

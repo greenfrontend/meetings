@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(users_params.merge(role: 'User'))
+    @user = User.new(users_params)
 
     if @user.save
       redirect_to new_session_path, notice: t('.success')

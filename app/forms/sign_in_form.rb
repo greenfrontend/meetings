@@ -3,11 +3,11 @@
 class SignInForm
   include ActiveModel::Model
 
-  attr_accessor :email, :password, :admin_form
+  attr_accessor :email, :password
 
   validates :email, presence: true
   validates :password, presence: true
-  validate :user_exists, :user_can_sign_in, :check_admin
+  validate :user_exists, :user_can_sign_in
 
   def user_can_sign_in
     errors.add(:password, :cannot_sign_in) if password.present? && !@user&.authenticate(password)
@@ -19,10 +19,6 @@ class SignInForm
 
   def user
     @user ||= User.find_by(email:)
-  end
-
-  def check_admin
-    errors.add(:email, :not_admin) if admin_form && !user.admin?
   end
 
   def email=(value)

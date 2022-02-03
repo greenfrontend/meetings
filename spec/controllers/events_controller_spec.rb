@@ -73,11 +73,12 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'PUT #update' do
     let(:event) { create(:event, user:) }
-    let(:attrs) { Hash[title: 'new'] }
+    let(:attrs) { Hash[title: 'Event new'] }
 
     it 'updates event' do
-      put :update, params: { id: event.id, event: attrs }
-      expect(event.reload.title).to eq attrs[:title]
+      expect do
+        put :update, params: { id: event.id, event: attrs }
+      end.to change { event.reload.title }.from('Event').to('Event new')
     end
 
     it 'redirects to root path' do
