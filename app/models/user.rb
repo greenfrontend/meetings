@@ -6,4 +6,8 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   has_many :events, dependent: :destroy
+
+  def admin?
+    role == 'Admin'
+  end
 end

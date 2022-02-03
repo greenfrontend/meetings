@@ -13,3 +13,6 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Enabled: false
+
+Lint/DuplicateMethods:
+  Enabled: false

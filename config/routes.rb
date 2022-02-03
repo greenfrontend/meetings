@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :events
   resources :users, only: %i[new create]
   resource :session, only: %i[new create destroy]
+
+  namespace :admin do
+    resources :events
+  end
 end

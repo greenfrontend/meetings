@@ -3,11 +3,12 @@
 require 'rails_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.describe EventsController, type: :controller do
+RSpec.describe Admin::EventsController, type: :controller do
   let(:user) { create(:user) }
+  let(:admin) { create(:user, :admin) }
 
   before do
-    sign_in user
+    sign_in admin
   end
 
   describe 'GET #index' do
@@ -19,46 +20,6 @@ RSpec.describe EventsController, type: :controller do
 
     it 'returns success status' do
       expect(response).to have_http_status :success
-    end
-  end
-
-  describe 'GET #new' do
-    before { get :new }
-
-    it 'renders form' do
-      expect(response).to render_template :new
-    end
-
-    it 'returns success status' do
-      expect(response).to have_http_status :success
-    end
-  end
-
-  describe 'POST #create' do
-    context 'with valid attributes' do
-      let(:event) { attributes_for(:event) }
-
-      it 'creates event' do
-        event_params = { event: }
-
-        expect do
-          post :create, params: event_params
-        end.to change(Event, :count).by(1)
-
-        expect(response).to redirect_to(root_path)
-      end
-    end
-
-    context 'with invalid attributes' do
-      it 'not creates event' do
-        event_params = { event: { title: 'only title' } }
-
-        expect do
-          post :create, params: event_params
-        end.not_to change(Event, :count)
-
-        expect(response).to have_http_status(:unprocessable_entity)
-      end
     end
   end
 
@@ -83,7 +44,7 @@ RSpec.describe EventsController, type: :controller do
 
     it 'redirects to root path' do
       put :update, params: { id: event.id, event: attrs }
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(admin_events_path)
     end
   end
 
@@ -95,7 +56,7 @@ RSpec.describe EventsController, type: :controller do
         delete :destroy, params: { id: event.id }
       end.to change(Event, :count).by(-1)
 
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(admin_events_path)
     end
   end
 end
