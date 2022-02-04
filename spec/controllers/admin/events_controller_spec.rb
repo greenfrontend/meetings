@@ -48,6 +48,26 @@ RSpec.describe Admin::EventsController, type: :controller do
     end
   end
 
+  describe 'PUT #approve' do
+    let(:event) { create(:event, user:) }
+
+    it 'approves event' do
+      expect do
+        put :approve, params: { id: event.id }
+      end.to change { event.reload.state }.from('pending').to('approved')
+    end
+  end
+
+  describe 'PUT #decline' do
+    let(:event) { create(:event, user:) }
+
+    it 'declines event' do
+      expect do
+        put :decline, params: { id: event.id }
+      end.to change { event.reload.state }.from('pending').to('declined')
+    end
+  end
+
   describe 'DELETE #destroy' do
     it 'destroy' do
       event = create(:event, user:)

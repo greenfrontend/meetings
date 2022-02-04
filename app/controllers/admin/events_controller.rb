@@ -2,10 +2,10 @@
 
 module Admin
   class EventsController < Admin::BaseController
-    before_action :set_event, only: %i[edit update destroy]
+    before_action :set_event, only: %i[edit update destroy approve decline]
 
     def index
-      @events = Event.page(params[:page]).per(10).order('updated_at DESC')
+      @events = Event.pending.page(params[:page]).per(10).order('updated_at DESC')
     end
 
     def edit; end
@@ -22,6 +22,16 @@ module Admin
       @event.destroy
 
       redirect_to admin_events_path, status: :see_other, notice: t('.deleted')
+    end
+
+    def approve
+      @event.approve!
+      redirect_to admin_events_path, notice: t('.approved')
+    end
+
+    def decline
+      @event.decline!
+      redirect_to admin_events_path, notice: t('.declined')
     end
 
     private

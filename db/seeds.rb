@@ -8,4 +8,4 @@ user = FactoryBot.create(:user)
   FactoryBot.create(:event, user_id: user.id)
 end
 
-FactoryBot.create(:admin)
+FactoryBot.create(:user, :admin)
