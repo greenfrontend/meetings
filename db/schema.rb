@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2022_02_03_173728) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
-    t.string "state"
+    t.string "state", default: "pending", null: false
     t.index ["user_id"], name: "index_events_on_user_id"
   end
 

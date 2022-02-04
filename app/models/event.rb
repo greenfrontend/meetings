@@ -6,9 +6,6 @@ class Event < ApplicationRecord
   validates :title, :location, :start_time, presence: true
   belongs_to :user
 
-  scope :approved, -> { where(state: 'approved') }
-  scope :pendings, -> { where(state: 'pending') }
-
   aasm column: 'state' do
     state :pending, initial: true
     state :approved, :declined
