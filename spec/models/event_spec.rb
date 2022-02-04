@@ -13,18 +13,12 @@ RSpec.describe Event, type: :model do
     let(:user) { create(:user) }
     let(:event) { create(:event, user:) }
 
-    it 'has initial state' do
-      expect(event).to have_state(:pending)
-    end
+    it { is_expected.to have_state :pending }
 
-    it 'allow events' do
-      expect(event).to allow_event :approve
-      expect(event).to allow_event :decline
-    end
+    it { is_expected.to allow_event :approve }
+    it { is_expected.to allow_event :decline }
 
-    it 'change state by event' do
-      expect(event).to transition_from(:pending).to(:approved).on_event(:approve)
-      expect(event).to transition_from(:pending).to(:declined).on_event(:decline)
-    end
+    it { is_expected.to transition_from(:pending).to(:approved).on_event(:approve) }
+    it { is_expected.to transition_from(:pending).to(:declined).on_event(:decline) }
   end
 end
