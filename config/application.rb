@@ -20,6 +20,14 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+def default_options
+  if Rails.env.development? || Rails.env.test?
+    { host: 'localhost', protocol: 'http', port: '3000' }
+  else
+    { host: ENV['HOST'], protocol: 'https' }
+  end
+end
+
 module Meetings
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -35,5 +43,10 @@ module Meetings
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.action_controller.default_url_options = default_options
+    config.default_url_options = default_options
   end
 end
+
+Meetings::Application.default_url_options = default_options
