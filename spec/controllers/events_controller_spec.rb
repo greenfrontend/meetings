@@ -54,7 +54,7 @@ RSpec.describe EventsController, type: :controller do
 
         expect do
           post :create, params: event_params
-        end.to change {ActionMailer::Base.deliveries.count }.by(1)
+        end.to change { ActionMailer::Base.deliveries.count }.by(1)
       end
     end
 

@@ -68,6 +68,8 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
+    addressable (2.8.0)
+      public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
     bcrypt (3.1.16)
     bindex (0.8.1)
@@ -129,6 +131,15 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    launchy (2.5.0)
+      addressable (~> 2.7)
+    letter_opener (1.7.0)
+      launchy (~> 2.2)
+    letter_opener_web (2.0.0)
+      actionmailer (>= 5.2)
+      letter_opener (~> 1.7)
+      railties (>= 5.2)
+      rexml
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -167,6 +178,7 @@ GEM
     parser (3.1.0.0)
       ast (~> 2.4.1)
     pg (1.2.3)
+    public_suffix (4.0.6)
     puma (5.5.2)
       nio4r (~> 2.0)
     racc (1.6.0)
@@ -320,6 +332,8 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kaminari
+  letter_opener
+  letter_opener_web (~> 2.0)
   mailgun-ruby (~> 1.2.5)
   pg (~> 1.1)
   puma (~> 5.0)

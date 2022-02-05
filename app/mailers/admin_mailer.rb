@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AdminMailer < ApplicationMailer
-  default to: -> { User.admins.pluck(:email) }, 
+  default to: -> { User.admins.pluck(:email) },
           from: "notifications@#{ENV['MAILGUN_DOMAIN']}"
 
   def created_event_email

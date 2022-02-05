@@ -16,8 +16,8 @@ gem 'aasm'
 gem 'cssbundling-rails'
 gem 'kaminari'
 gem 'mailgun-ruby', '~>1.2.5'
-gem 'simple_form'
 gem 'sidekiq'
+gem 'simple_form'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -69,6 +69,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
