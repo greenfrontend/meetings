@@ -243,6 +243,9 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
+    rspec-sidekiq (3.1.0)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.10.3)
     rubocop (1.25.0)
       parallel (~> 1.10)
@@ -340,6 +343,7 @@ DEPENDENCIES
   rails (~> 7.0.1)
   rails-controller-testing
   rspec-rails (~> 5.0.0)
+  rspec-sidekiq
   rubocop-rails
   rubocop-rspec
   shoulda-matchers (~> 5.0)

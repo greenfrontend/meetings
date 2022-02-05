@@ -22,5 +22,8 @@ reset:
 	bin/rails db:migrate
 	bin/rails db:seed
 
+sidekiq:
+	bundle exec sidekiq
+
 seed:
 	bin/rails db:seed:replant

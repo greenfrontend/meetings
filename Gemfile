@@ -85,6 +85,7 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.17.1', require: false
 end

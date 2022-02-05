@@ -15,7 +15,7 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
-      EventService.call(@event.id)
+      EventService.notify_admins_on_create_event(@event)
       redirect_to root_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity

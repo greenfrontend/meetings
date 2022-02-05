@@ -46,6 +46,7 @@ module Meetings
 
     config.action_controller.default_url_options = default_options
     config.default_url_options = default_options
+    config.active_job.queue_adapter = :sidekiq
   end
 end
 
