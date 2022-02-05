@@ -2,13 +2,15 @@
 
 module Admin
   class EventsController < Admin::BaseController
-    before_action :set_event, only: %i[edit update destroy approve decline]
+    before_action :set_event, only: %i[show edit update destroy approve decline]
 
     def index
       @events = Event.pending.page(params[:page]).per(10).order('updated_at DESC')
     end
 
     def edit; end
+
+    def show; end
 
     def update
       if @event.update(event_params)

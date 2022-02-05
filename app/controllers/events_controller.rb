@@ -15,6 +15,8 @@ class EventsController < ApplicationController
     @event = current_user.events.build(event_params)
 
     if @event.save
+      url = admin_event_url(@event)
+      AdminMailer.with(url: url).created_event_email.deliver_now
       redirect_to root_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity

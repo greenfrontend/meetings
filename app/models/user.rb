@@ -7,6 +7,8 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :destroy
 
+  scope :admins, -> { where(role: 'Admin') }
+
   def admin?
     role == 'Admin'
   end

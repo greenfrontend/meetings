@@ -17,6 +17,7 @@ gem 'cssbundling-rails'
 gem 'kaminari'
 gem 'mailgun-ruby', '~>1.2.5'
 gem 'simple_form'
+gem 'sidekiq'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
