@@ -6,6 +6,6 @@ class AdminMailer < ApplicationMailer
 
   def created_event_email
     @url = params[:url]
-    mail(subject: 'New event was created, need approve or decline')
+    mail(subject: t('.subject'))
   end
 end

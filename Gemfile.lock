@@ -142,6 +142,8 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
+    i18n-debug (1.2.0)
+      i18n (< 2)
     importmap-rails (1.0.2)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -368,6 +370,7 @@ DEPENDENCIES
   debug
   dotenv-rails
   factory_bot_rails
+  i18n-debug
   importmap-rails
   jbuilder
   jsbundling-rails
