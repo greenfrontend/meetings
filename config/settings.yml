@@ -1,0 +1,3 @@
+mail:
+  domain: ENV['MAILGUN_DOMAIN']
+  api_key: ENV['MAILGUN_API_KEY']

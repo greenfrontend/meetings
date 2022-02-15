@@ -13,6 +13,7 @@ gem 'slim-rails'
 gem 'jsbundling-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'aasm'
+gem 'config'
 gem 'cssbundling-rails'
 gem 'kaminari'
 gem 'mailgun-ruby', '~>1.2.5'

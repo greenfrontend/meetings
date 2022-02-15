@@ -2,7 +2,7 @@
 
 class AdminMailer < ApplicationMailer
   default to: -> { User.admins.pluck(:email) },
-          from: "notifications@#{ENV['MAILGUN_DOMAIN']}"
+          from: "notifications@#{Settings.mail.domain}"
 
   def created_event_email
     @url = params[:url]
