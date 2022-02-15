@@ -24,7 +24,7 @@ def default_options
   if Rails.env.development? || Rails.env.test?
     { host: 'localhost', protocol: 'http', port: '3000' }
   else
-    { host: ENV['HOST'], protocol: 'https' }
+    { host: Settings.host, protocol: 'https' }
   end
 end
 
