@@ -8,6 +8,7 @@ RSpec.describe EventsController, type: :controller do
 
   before do
     sign_in user
+    create(:user, :admin)
   end
 
   describe 'GET #index' do
@@ -46,6 +47,22 @@ RSpec.describe EventsController, type: :controller do
         end.to change(Event, :count).by(1)
 
         expect(response).to redirect_to(root_path)
+      end
+
+      it 'sends email to admins' do
+        event_params = { event: }
+
+        expect do
+          post :create, params: event_params
+        end.to change { ActionMailer::Base.deliveries.count }.by(1)
+      end
+
+      it 'calls EventService' do
+        event_params = { event: }
+
+        expect(EventService).to receive(:notify_admins_on_create_event)
+
+        post :create, params: event_params
       end
     end
 

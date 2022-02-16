@@ -97,3 +97,9 @@ en:
           attributes:
             password:
               cannot_sign_in: "wrong or email does not exist"
+  admin_mailer:
+    created_event_email:
+      subject: "New event was created, need approve or decline"
+      title: "New event was created, need approve or decline"
+      action: "Just follow this link "
+      link: "Link to event"

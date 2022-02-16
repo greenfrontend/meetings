@@ -13,8 +13,11 @@ gem 'slim-rails'
 gem 'jsbundling-rails'
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem 'aasm'
+gem 'config'
 gem 'cssbundling-rails'
 gem 'kaminari'
+gem 'mailgun-ruby', '~>1.2.5'
+gem 'sidekiq'
 gem 'simple_form'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
@@ -61,14 +64,18 @@ gem 'bootsnap', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do
+  gem 'letter_opener'
+  gem 'letter_opener_web', '~> 2.0'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem 'i18n-debug'
   gem 'web-console'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
@@ -80,6 +87,7 @@ end
 
 group :test do
   gem 'rails-controller-testing'
+  gem 'rspec-sidekiq'
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', '~> 0.17.1', require: false
 end
