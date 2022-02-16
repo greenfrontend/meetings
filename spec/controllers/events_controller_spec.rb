@@ -56,6 +56,14 @@ RSpec.describe EventsController, type: :controller do
           post :create, params: event_params
         end.to change { ActionMailer::Base.deliveries.count }.by(1)
       end
+
+      it 'calls EventService' do
+        event_params = { event: }
+
+        expect(EventService).to receive(:notify_admins_on_create_event)
+
+        post :create, params: event_params
+      end
     end
 
     context 'with invalid attributes' do

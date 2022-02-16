@@ -16,3 +16,6 @@ RSpec/MultipleExpectations:
 
 Lint/DuplicateMethods:
   Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
