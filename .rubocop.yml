@@ -19,3 +19,6 @@ Lint/DuplicateMethods:
 
 RSpec/MessageSpies:
   Enabled: false
+
+Rails/BulkChangeTable:
+  Enabled: false

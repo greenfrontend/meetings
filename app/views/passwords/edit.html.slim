@@ -1,0 +1,9 @@
+.container.mt-4
+  .row
+    .col.col-md-6.mx-auto
+      h4.mb-4 = t('.title')
+
+      = simple_form_for @password, url: password_path(token: params[:token]), method: :patch do |f|
+        = f.input :password, type: :password
+        = f.input :password_confirmation, type: :password
+        = f.button :submit, t('.button'), class:"btn btn-primary mt-2"

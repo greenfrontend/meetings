@@ -1,0 +1,8 @@
+.container.mt-4
+  .row
+    .col.col-md-6.mx-auto
+      h4.mb-4 = t('.title')
+
+      = simple_form_for @forgot_password_form, url: forgot_password_path do |f|
+        = f.input :email, type: :email
+        = f.button :submit, t('.button'), class:"btn btn-primary mt-2"

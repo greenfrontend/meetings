@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class AdminMailer < ApplicationMailer
-  default to: -> { User.admins.pluck(:email) },
-          from: "notifications@#{Settings.mail.domain}"
+  default to: -> { User.admins.pluck(:email) }
 
   def created_event_email
     @url = params[:url]

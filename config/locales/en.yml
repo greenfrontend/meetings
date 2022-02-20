@@ -61,6 +61,7 @@ en:
     new:
       title: "Log in"
       button: "Log in"
+      forgot: "Forgot password?"
     create:
       success: "Successfully signed in"
   admin:
@@ -103,3 +104,23 @@ en:
       title: "New event was created, need approve or decline"
       action: "Just follow this link "
       link: "Link to event"
+  user_mailer:
+    reset_password_token_created:
+      title: "Click the following link to reset your password:"
+      subject: "Reset your password"
+  forgot_passwords:
+    new:
+      title: "Reset password"
+      button: "Reset"
+    create:
+      not_found: "User not found"
+      link_was_sent: "Link for password reset was sent to your email"
+  passwords:
+    edit:
+      title: "Create new password"
+      button: "Create"
+      not_found: "User not found"
+      token_expired: "Password reset token is expired"
+    update:
+      not_found: "User not found"
+      password_updated: "Password was updated"
