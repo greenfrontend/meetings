@@ -65,6 +65,11 @@ en:
     create:
       success: "Successfully signed in"
   admin:
+    users:
+      index:
+        new_user: "Create User"
+      new:
+        title: "Create new user"
     sessions:
       new:
         title: "Admin log in"
@@ -88,7 +93,8 @@ en:
         declined: "Declined!"
     menu:
       title: "Admin"
-      pending_events: "Penging events"
+      pending_events: "Pending events"
+      users: "Users"
     auth:
       should_be_admin: "You must be admin to access this section"
   activemodel:

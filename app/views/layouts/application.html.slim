@@ -18,6 +18,8 @@ html
             ul.dropdown-menu aria-labelledby="dropdownMenuLink" 
               li
                 = link_to t('.admin.menu.pending_events'), admin_events_path, class: "dropdown-item"
+              li
+                = link_to t('.admin.menu.users'), admin_users_path, class: "dropdown-item"
         button.navbar-toggler aria-controls="navbarSupportedContent" aria-expanded="false" aria-label=("Toggle navigation") data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button" 
           span.navbar-toggler-icon
         #navbarSupportedContent.collapse.navbar-collapse

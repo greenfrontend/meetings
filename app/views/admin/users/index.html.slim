@@ -1,0 +1,19 @@
+.container.mt-4
+  .row
+    .col
+      a.btn.btn-success.mb-2(href=new_admin_user_path) = t('.new_user')
+
+      table.table
+        thead
+          tr
+            th scope="col"  #
+            th scope="col"  First name
+            th scope="col"  Last name
+            th scope="col"  Email
+            th scope="col"  Role
+            th scope="col"  Actions
+        tbody          
+          - @users.each do |user|
+            = render partial: 'user', locals: { user: user }
+
+  = paginate @users

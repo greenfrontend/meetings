@@ -19,5 +19,7 @@ Rails.application.routes.draw do
         put 'decline'
       end
     end
+
+    resources :users
   end
 end
