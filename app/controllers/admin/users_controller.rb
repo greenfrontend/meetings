@@ -5,6 +5,7 @@ module Admin
     before_action :set_user, only: %i[edit update]
 
     def index
+      authorize User
       @users = User.page(params[:page]).per(10).order('id')
     end
 

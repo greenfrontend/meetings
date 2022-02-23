@@ -21,6 +21,7 @@ module Admin
     end
 
     def destroy
+      authorize Event
       @event.destroy
 
       redirect_to admin_events_path, status: :see_other, notice: t('.deleted')
