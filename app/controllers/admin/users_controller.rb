@@ -5,7 +5,7 @@ module Admin
     before_action :set_user, only: %i[edit update]
 
     def index
-      @users = User.page(params[:page]).per(10)
+      @users = User.page(params[:page]).per(10).order('id')
     end
 
     def new
@@ -21,6 +21,7 @@ module Admin
       @user = User.new(users_params.merge(password_params))
 
       if @user.save
+        UserService.send_link_for_reset_password(@user)
         redirect_to admin_users_path, notice: t('.success')
       else
         render :new, status: :unprocessable_entity
