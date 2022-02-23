@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/BlockLength
 FactoryBot.define do
   factory :user do
     first_name { 'John' }
@@ -7,6 +8,14 @@ FactoryBot.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password_digest { BCrypt::Password.create('test') }
     role { 'User' }
+
+    sequence :reset_password_token do |_n|
+      'token'
+    end
+
+    sequence :reset_password_token_created_at do |_n|
+      Time.zone.now
+    end
 
     trait :admin do
       sequence(:email) { |n| "admin#{n}@example.com" }
@@ -25,3 +34,4 @@ FactoryBot.define do
     user
   end
 end
+# rubocop:enable Metrics/BlockLength

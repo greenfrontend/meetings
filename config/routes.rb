@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resource :session, only: %i[new create destroy]
 
+  resource :forgot_password, only: %i[new create]
+  resource :password, only: %i[edit update]
+
   namespace :admin do
     resources :events do
       member do
@@ -16,5 +19,7 @@ Rails.application.routes.draw do
         put 'decline'
       end
     end
+
+    resources :users
   end
 end

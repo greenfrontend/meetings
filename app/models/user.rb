@@ -12,4 +12,12 @@ class User < ApplicationRecord
   def admin?
     role == 'Admin'
   end
+
+  def moderator?
+    role == 'Moderator'
+  end
+
+  def admin_access?
+    admin? || moderator?
+  end
 end
